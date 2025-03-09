@@ -40,5 +40,32 @@ def successlb(score):
 
     return render_template("result1.html",results=exp)
 
+@app.route("/successbv/<int:score>")
+def successbv(score):
+    return render_template("result.html",results=score)
+
+
+
+
+@app.route('/fail/<int:score>')
+def fail(score):
+    return render_template('result.html',results=score)
+
+@app.route("submit",methods=["GET","POST"])
+def submit():
+    tot_score = 0
+    if request.method=="POST":
+        science = float(request.form["science"])
+        maths = float(request.form["maths"])
+        c= float(request.form["c"])
+        data_science = float(request.form["datascience"])
+
+        tot_score = (science+maths+c+data_science)
+    else:
+        return render_template("getresult.html")
+    return redirect(url_for("successbv",score=tot_score))
+
+
+
 if __name__=="__main__":
     app.run(debug=True)
