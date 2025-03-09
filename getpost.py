@@ -4,9 +4,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def welcome():
-    return "<html><h2 style=color:blue>Welcome to our home page</h2></html>"
+    return "<html><h2 style=color:green>This is our home page</h2></html>"
 
-@app.route("/index",methods=["Get"])
+@app.route("/index",methods=["GET"])
 def index():
     return render_template("index.html")
 
@@ -18,7 +18,7 @@ def about():
 def form():
     if request.method=="POST":
         name=request.form["name"]
-        return f"hello {name}"
+        return f"hello{name}"
     return render_template("form.html")
 
 @app.route("/submit",methods=["GET","POST"])
@@ -27,6 +27,7 @@ def submit():
         name=request.form["name"]
         return f"hello{name}"
     return render_template("form.html")
+
 
 if __name__=="__main__":
     app.run(debug=True)
