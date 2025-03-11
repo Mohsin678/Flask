@@ -51,7 +51,7 @@ def successbv(score):
 def fail(score):
     return render_template('result.html',results=score)
 
-@app.route("submit",methods=["GET","POST"])
+@app.route("/submit",methods=["GET","POST"])
 def submit():
     tot_score = 0
     if request.method=="POST":
@@ -64,6 +64,11 @@ def submit():
     else:
         return render_template("getresult.html")
     return redirect(url_for("successbv",score=tot_score))
+
+
+
+
+
 
 
 
